@@ -2,9 +2,17 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  // template: `<div>
+  //                      <h1>{{name}} </h1>
+  //                      <my-Employee></my-Employee>
+  //           </div>`,
+  template:`<div><h1>{{name}}</h1>
+  <my-Employee></my-Employee>
+  
+  </div>`,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular6Project tutorial';
+  name: string = 'Employee Details';
+
 }
