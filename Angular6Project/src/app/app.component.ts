@@ -2,17 +2,12 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  // template: `<div>
-  //                      <h1>{{name}} </h1>
-  //                      <my-Employee></my-Employee>
-  //           </div>`,
-  template:`<div><h1>{{name}}</h1>
-  <my-Employee></my-Employee>
-  
-  </div>`,
+  templateUrl:'./app.component.html' ,
+ // templateUrl:'<app-root></app-root>  ',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   name: string = 'Employee Details';
+  isdisabled:boolean=true;
 
 }
