@@ -3,25 +3,79 @@
         <div class="panel-heading">
             <h1 class="panel-title">Create Employee</h1>
         </div>
-   
-
-    <div class="panel-body">
-        <div class="form-group">
-            <label class="col-sm-8 control-label">Full Name</label>
-            <div class="col-sm-8">
-            <input id="fullname" fromControlName="fullName" type="text" class="form-control">
-        </div>
-        </div>
-        <div class="form-group">
+        <div class="panel-body">
+            <div class="form-group" [ngClass]="{'has-error':employeeForm.get('fullName').errors &&
+            employeeForm.get('fullName').touched || employeeForm.get('fullName').dirty  }">
+                <label class="col-sm-8 control-label">Full Name</label>
+                <div class="col-sm-8">
+                    <input id="fullname" formControlName="fullName" type="text" class="form-control">
+                </div>
+                <span class="help-desk" *ngIf="{'has-error':employeeForm.get('fullName').errors &&
+                employeeForm.get('fullName').touched || employeeForm.get('fullName').dirty  }">
+                    <span *ngIf="employeeForm.get('fullName').errors.required">
+                        Full Name is required
+                    </span>
+                </span>
+            </div>
+            <div class="form-group">
                 <label class="col-sm-8 control-label">Email</label>
                 <div class="col-sm-8">
-                <input id="email" type="text" fromControlName="email" class="form-control">
+                    <input id="email" type="text" formControlName="email" class="form-control">
+                </div>
             </div>
+        </div>
+        <div formGroupName="skills">
+            <div class="form-group">
+                <label>Skill</label>
+                <input type="text" id="skills" formControlName="skillsName" placeholder="like c,c++">
+
+                <div>
+                    <label>Experience in years</label>
+                    <input type="text" id="exp" formControlName="Experience" placeholder="No of Exp....">
+                </div>
             </div>
-    </div>
-    <div class="panel-footer" >
-        <button class="btn btn-primary" type="submit">Save</button>
+            <div class="form-group">
+                <label class="control-label">Proficiency</label>
+                <div class="col-md-8">
+                    <label class="radio-inline"><input id="proficiency" formControlName="proficiency" type="radio"
+                            value="beginner">Begineer</label>
+                    <label class="radio-inline"><input id="proficiency" formControlName="proficiency" type="radio"
+                            value="Intermediate">Intermediate</label>
+                    <label class="radio-inline"><input id="proficiency" formControlName="proficiency" type="radio"
+                            value="Advanced">Advanced</label>
+                </div>
+
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="btn-toolbar">
+                <button class="btn btn-primary" type="submit">Save</button>
+                <button class="btn btn-primary" type="button" (click)='loadDataMethod()'>Load data</button>
+            </div>
+        </div>
 
     </div>
-</div>
+
+
 </form>
+
+<table border="1">
+    <tr>
+        <th>Form Group</th>
+        <th>Form Controll(fullName)</th>
+    </tr>
+    <tr>
+        <td style="padding: 10.0px">
+            touched:{{employeeForm.touched}}
+            <br />dirty:{{employeeForm.dirty}}
+            <br />valid:{{employeeForm.valid}}
+            <br />value:{{employeeForm.value | json}}
+        </td>
+        <td style="padding: 10.0px">
+            touched:{{employeeForm.get('fullName').touched}}
+            <br />dirty:{{employeeForm.dirty}}
+            <br />valid:{{employeeForm.valid}}
+            <br />value:{{employeeForm.get('fullName').value}}
+        </td>
+    </tr>
+</table>
